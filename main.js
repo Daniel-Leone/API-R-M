@@ -10,17 +10,16 @@ fetch(api)
     .then(res => res.json())
     .then(data => {
         const array = data.results
-
-        console.log(data);
         
         array.forEach(pers =>{
 
             const clone = template.content.cloneNode(true);
 
             clone.querySelector('#img img').src = pers.image;
+            clone.querySelector('#img img').alt = pers.name;
+            clone.querySelector('#img img').dataset.name = pers.name;
             clone.querySelector('#info #name').textContent = pers.name;
             clone.querySelector('#info #specie').textContent = pers.species;
-            clone.querySelector('#info #gender').textContent = pers.gender;
 
             fragment.appendChild(clone)
         })
